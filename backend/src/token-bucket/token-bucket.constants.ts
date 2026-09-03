@@ -1,0 +1,5 @@
+export const BUCKET_CAPACITY = 100;
+export const WINDOW_MS = 60_000;
+export const MAX_USERS = 10;
+export const REFILL_PER_MS = BUCKET_CAPACITY / WINDOW_MS;
+export const REFILL_PER_SECOND = BUCKET_CAPACITY / (WINDOW_MS / 1000);
