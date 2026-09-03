@@ -60,10 +60,13 @@ function App() {
       const results = await Promise.all(
         Array.from({ length: count }, () => fetchGreeting(id)),
       )
-      setLogs((current) => ({
-        ...current,
-        [id]: [...results, ...(current[id] ?? [])].slice(0, LOG_LIMIT),
-      }))
+      setLogs((current) => {
+        const newest = results.slice(-LOG_LIMIT).reverse()
+        return {
+          ...current,
+          [id]: [...newest, ...(current[id] ?? [])].slice(0, LOG_LIMIT),
+        }
+      })
       await refresh()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Request failed')

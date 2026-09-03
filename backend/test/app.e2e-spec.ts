@@ -65,6 +65,10 @@ describe('Users API (e2e)', () => {
       .expect(404);
   });
 
+  it('returns 404 when deleting a missing user', async () => {
+    await request(app.getHttpServer()).delete('/api/users/missing').expect(404);
+  });
+
   it('lists users', async () => {
     await request(app.getHttpServer()).post('/api/users').expect(201);
 
